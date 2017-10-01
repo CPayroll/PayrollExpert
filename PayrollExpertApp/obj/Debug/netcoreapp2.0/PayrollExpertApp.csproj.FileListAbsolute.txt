@@ -1,0 +1,12 @@
+C:\Projects\Others\PayrollExpertApp\PayrollExpertApp\bin\Debug\netcoreapp2.0\PayrollExpertApp.deps.json
+C:\Projects\Others\PayrollExpertApp\PayrollExpertApp\bin\Debug\netcoreapp2.0\PayrollExpertApp.runtimeconfig.json
+C:\Projects\Others\PayrollExpertApp\PayrollExpertApp\bin\Debug\netcoreapp2.0\PayrollExpertApp.runtimeconfig.dev.json
+C:\Projects\Others\PayrollExpertApp\PayrollExpertApp\bin\Debug\netcoreapp2.0\PayrollExpertApp.dll
+C:\Projects\Others\PayrollExpertApp\PayrollExpertApp\obj\Debug\netcoreapp2.0\PayrollExpertApp.csprojResolveAssemblyReference.cache
+C:\Projects\Others\PayrollExpertApp\PayrollExpertApp\obj\Debug\netcoreapp2.0\PayrollExpertApp.csproj.CoreCompileInputs.cache
+C:\Projects\Others\PayrollExpertApp\PayrollExpertApp\obj\Debug\netcoreapp2.0\PayrollExpertApp.AssemblyInfoInputs.cache
+C:\Projects\Others\PayrollExpertApp\PayrollExpertApp\obj\Debug\netcoreapp2.0\PayrollExpertApp.AssemblyInfo.cs
+C:\Projects\Others\PayrollExpertApp\PayrollExpertApp\bin\Debug\netcoreapp2.0\PayrollExpertApp.pdb
+C:\Projects\Others\PayrollExpertApp\PayrollExpertApp\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Projects\Others\PayrollExpertApp\PayrollExpertApp\obj\Debug\netcoreapp2.0\PayrollExpertApp.dll
+C:\Projects\Others\PayrollExpertApp\PayrollExpertApp\obj\Debug\netcoreapp2.0\PayrollExpertApp.pdb
