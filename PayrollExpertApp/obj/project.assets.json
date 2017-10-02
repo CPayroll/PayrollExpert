@@ -13172,7 +13172,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Carson\\.nuget\\packages\\": {},
+    "C:\\Users\\Joy\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -13181,17 +13181,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Carson\\CPayroll\\PayrollExpertApp\\PayrollExpertApp.csproj",
+      "projectUniqueName": "C:\\Wesley\\Git\\CPayroll\\PayrollExpert\\PayrollExpertApp\\PayrollExpertApp.csproj",
       "projectName": "PayrollExpertApp",
-      "projectPath": "C:\\Carson\\CPayroll\\PayrollExpertApp\\PayrollExpertApp.csproj",
-      "packagesPath": "C:\\Users\\Carson\\.nuget\\packages\\",
-      "outputPath": "C:\\Carson\\CPayroll\\PayrollExpertApp\\obj\\",
+      "projectPath": "C:\\Wesley\\Git\\CPayroll\\PayrollExpert\\PayrollExpertApp\\PayrollExpertApp.csproj",
+      "packagesPath": "C:\\Users\\Joy\\.nuget\\packages\\",
+      "outputPath": "C:\\Wesley\\Git\\CPayroll\\PayrollExpert\\PayrollExpertApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Carson\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Joy\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

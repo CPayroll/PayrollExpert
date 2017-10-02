@@ -10,3 +10,15 @@ C:\Projects\Others\PayrollExpertApp\PayrollExpertApp\bin\Debug\netcoreapp2.0\Pay
 C:\Projects\Others\PayrollExpertApp\PayrollExpertApp\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
 C:\Projects\Others\PayrollExpertApp\PayrollExpertApp\obj\Debug\netcoreapp2.0\PayrollExpertApp.dll
 C:\Projects\Others\PayrollExpertApp\PayrollExpertApp\obj\Debug\netcoreapp2.0\PayrollExpertApp.pdb
+C:\Wesley\Git\CPayroll\PayrollExpert\PayrollExpertApp\bin\Debug\netcoreapp2.0\PayrollExpertApp.deps.json
+C:\Wesley\Git\CPayroll\PayrollExpert\PayrollExpertApp\bin\Debug\netcoreapp2.0\PayrollExpertApp.runtimeconfig.json
+C:\Wesley\Git\CPayroll\PayrollExpert\PayrollExpertApp\bin\Debug\netcoreapp2.0\PayrollExpertApp.runtimeconfig.dev.json
+C:\Wesley\Git\CPayroll\PayrollExpert\PayrollExpertApp\bin\Debug\netcoreapp2.0\PayrollExpertApp.dll
+C:\Wesley\Git\CPayroll\PayrollExpert\PayrollExpertApp\bin\Debug\netcoreapp2.0\PayrollExpertApp.pdb
+C:\Wesley\Git\CPayroll\PayrollExpert\PayrollExpertApp\obj\Debug\netcoreapp2.0\PayrollExpertApp.csprojResolveAssemblyReference.cache
+C:\Wesley\Git\CPayroll\PayrollExpert\PayrollExpertApp\obj\Debug\netcoreapp2.0\PayrollExpertApp.csproj.CoreCompileInputs.cache
+C:\Wesley\Git\CPayroll\PayrollExpert\PayrollExpertApp\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Wesley\Git\CPayroll\PayrollExpert\PayrollExpertApp\obj\Debug\netcoreapp2.0\PayrollExpertApp.AssemblyInfoInputs.cache
+C:\Wesley\Git\CPayroll\PayrollExpert\PayrollExpertApp\obj\Debug\netcoreapp2.0\PayrollExpertApp.AssemblyInfo.cs
+C:\Wesley\Git\CPayroll\PayrollExpert\PayrollExpertApp\obj\Debug\netcoreapp2.0\PayrollExpertApp.dll
+C:\Wesley\Git\CPayroll\PayrollExpert\PayrollExpertApp\obj\Debug\netcoreapp2.0\PayrollExpertApp.pdb
