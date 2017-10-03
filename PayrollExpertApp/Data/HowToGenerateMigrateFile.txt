@@ -1,0 +1,3 @@
+﻿Run 
+dotnet ef migrations add CreatePayrollSchema --Context PayrollDbContext
+In root project folder of developer command of VS 2017.
