@@ -1,0 +1,78 @@
+﻿@model PayrollExpertApp.Data.Company
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Company</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OperatingName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OperatingName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CBABusinessNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CBABusinessNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RegistrationDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RegistrationDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MailingAddressSameAsHeadOfficeAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MailingAddressSameAsHeadOfficeAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WebsiteURL)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WebsiteURL)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SigningOfficer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SigningOfficer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Directors)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Directors)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Contr)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Contr)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

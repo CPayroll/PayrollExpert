@@ -1,0 +1,89 @@
+﻿@model IEnumerable<PayrollExpertApp.Data.Company>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OperatingName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CBABusinessNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RegistrationDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MailingAddressSameAsHeadOfficeAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WebsiteURL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SigningOfficer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Directors)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contr)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OperatingName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CBABusinessNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MailingAddressSameAsHeadOfficeAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WebsiteURL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SigningOfficer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Directors)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contr)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

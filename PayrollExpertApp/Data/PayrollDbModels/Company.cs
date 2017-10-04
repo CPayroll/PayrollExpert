@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace PayrollExpertApp.Data
 {
     public class Company
     {
-        public Guid CompanyId { get; set; }
-        public string CompanyName { get; set; }
+        [Key]
+        public int Id { get; set; }
+        public string Name { get; set; }
         public string OperatingName { get; set; }
         public string CBABusinessNumber { get; set; }
         public DateTime RegistrationDate { get; set; }
