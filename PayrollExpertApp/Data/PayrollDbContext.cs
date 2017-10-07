@@ -8,6 +8,11 @@ namespace PayrollExpertApp.Data
     /// </summary>
     public class PayrollDbContext : DbContext
     {
+        public PayrollDbContext(DbContextOptions<PayrollDbContext> options)
+            : base(options)
+        {
+        }
+
         public DbSet<Company> Companies { get; set; }
         public DbSet<Person> People { get; set; }
 
