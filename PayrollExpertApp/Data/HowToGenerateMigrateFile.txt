@@ -1,3 +1,22 @@
-﻿Run 
-dotnet ef migrations add CreatePayrollSchema --Context PayrollDbContext
-In root project folder of developer command of VS 2017.
+﻿If you do not have the context migrated, please ignore the step 1.
+Run commands in the project root folder of developer command of VS 2017.
+
+Step 1. 
+Run command to drop local database.
+dotnet ef database drop -c PayrollDbContext
+
+Step 2.
+Run command to remove migration file
+dotnet ef migrations remove -c PayrollDbContext
+
+Step 3.
+Run command to add new migration file
+dotnet ef migrations add CreatePayrollSchema -c PayrollDbContext -o Data\Migrations
+
+Step 4. 
+Debug the app, then apply ApplicationUserContext migration. 
+Run command to apply PayrollDbContext 
+dotnet ef database update -c ApplicationDbContext
+dotnet ef database update -c PayrollDbContext
+
+Remember to update the corresponding controllers and views. 

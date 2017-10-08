@@ -37,12 +37,12 @@ namespace PayrollExpertApp.Data.Migrations
                     b.Property<string>("City")
                         .HasMaxLength(70);
 
-                    b.Property<int?>("CompanyId");
+                    b.Property<int>("CompanyId");
 
                     b.Property<string>("Country")
                         .HasMaxLength(10);
 
-                    b.Property<int?>("PersonId");
+                    b.Property<int>("PersonId");
 
                     b.Property<string>("PostalCode")
                         .HasMaxLength(15);
@@ -67,25 +67,32 @@ namespace PayrollExpertApp.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CBABusinessNumber");
+                    b.Property<string>("CBABusinessNumber")
+                        .IsRequired()
+                        .HasMaxLength(9);
 
-                    b.Property<string>("Contr");
+                    b.Property<string>("Directors")
+                        .HasMaxLength(100);
 
-                    b.Property<string>("Directors");
-
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .HasMaxLength(100);
 
                     b.Property<bool>("MailingAddressSameAsHeadOfficeAddress");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
-                    b.Property<string>("OperatingName");
+                    b.Property<string>("OperatingName")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("RegistrationDate");
 
-                    b.Property<string>("SigningOfficer");
+                    b.Property<string>("SigningOfficer")
+                        .HasMaxLength(100);
 
-                    b.Property<string>("WebsiteURL");
+                    b.Property<string>("WebsiteURL")
+                        .HasMaxLength(100);
 
                     b.HasKey("Id");
 
@@ -113,7 +120,7 @@ namespace PayrollExpertApp.Data.Migrations
 
                     b.Property<double>("CommonSharePercentage");
 
-                    b.Property<int?>("CompanyId");
+                    b.Property<int>("CompanyId");
 
                     b.Property<string>("Name");
 
@@ -132,13 +139,15 @@ namespace PayrollExpertApp.Data.Migrations
 
             modelBuilder.Entity("PayrollExpertApp.Data.Address", b =>
                 {
-                    b.HasOne("PayrollExpertApp.Data.Company")
+                    b.HasOne("PayrollExpertApp.Data.Company", "Company")
                         .WithMany("Addresses")
-                        .HasForeignKey("CompanyId");
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("PayrollExpertApp.Data.Person")
+                    b.HasOne("PayrollExpertApp.Data.Person", "Person")
                         .WithMany("Addresses")
-                        .HasForeignKey("PersonId");
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PayrollExpertApp.Data.Person", b =>
@@ -150,9 +159,10 @@ namespace PayrollExpertApp.Data.Migrations
 
             modelBuilder.Entity("PayrollExpertApp.Data.ShareHolder", b =>
                 {
-                    b.HasOne("PayrollExpertApp.Data.Company")
+                    b.HasOne("PayrollExpertApp.Data.Company", "Company")
                         .WithMany("ShareHolders")
-                        .HasForeignKey("CompanyId");
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

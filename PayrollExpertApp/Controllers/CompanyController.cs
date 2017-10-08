@@ -53,7 +53,7 @@ namespace PayrollExpertApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,OperatingName,CBABusinessNumber,RegistrationDate,MailingAddressSameAsHeadOfficeAddress,WebsiteURL,Email,SigningOfficer,Directors,Contr")] Company company)
+        public async Task<IActionResult> Create([Bind("Id,Name,OperatingName,CBABusinessNumber,RegistrationDate,MailingAddressSameAsHeadOfficeAddress,WebsiteURL,Email,SigningOfficer,Directors")] Company company)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace PayrollExpertApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,OperatingName,CBABusinessNumber,RegistrationDate,MailingAddressSameAsHeadOfficeAddress,WebsiteURL,Email,SigningOfficer,Directors,Contr")] Company company)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,OperatingName,CBABusinessNumber,RegistrationDate,MailingAddressSameAsHeadOfficeAddress,WebsiteURL,Email,SigningOfficer,Directors")] Company company)
         {
             if (id != company.Id)
             {

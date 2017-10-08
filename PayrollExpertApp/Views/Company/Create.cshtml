@@ -60,11 +60,6 @@
                 <span asp-validation-for="Directors" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Contr" class="control-label"></label>
-                <input asp-for="Contr" class="form-control" />
-                <span asp-validation-for="Contr" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
@@ -75,6 +70,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

@@ -15,16 +15,15 @@ namespace PayrollExpertApp.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CBABusinessNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Contr = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Directors = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CBABusinessNumber = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
+                    Directors = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     MailingAddressSameAsHeadOfficeAddress = table.Column<bool>(type: "bit", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OperatingName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    OperatingName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SigningOfficer = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WebsiteURL = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    SigningOfficer = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    WebsiteURL = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -57,7 +56,7 @@ namespace PayrollExpertApp.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CommonSharePercentage = table.Column<double>(type: "float", nullable: false),
-                    CompanyId = table.Column<int>(type: "int", nullable: true),
+                    CompanyId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OtherPercentage = table.Column<double>(type: "float", nullable: false),
                     PreferredSharePercentage = table.Column<double>(type: "float", nullable: false),
@@ -71,7 +70,7 @@ namespace PayrollExpertApp.Data.Migrations
                         column: x => x.CompanyId,
                         principalTable: "Companies",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -84,9 +83,9 @@ namespace PayrollExpertApp.Data.Migrations
                     AddressLine2 = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: true),
                     AddressLine3 = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: true),
                     City = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: true),
-                    CompanyId = table.Column<int>(type: "int", nullable: true),
+                    CompanyId = table.Column<int>(type: "int", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
-                    PersonId = table.Column<int>(type: "int", nullable: true),
+                    PersonId = table.Column<int>(type: "int", nullable: false),
                     PostalCode = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
                     Province = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     Type = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true)
@@ -99,13 +98,13 @@ namespace PayrollExpertApp.Data.Migrations
                         column: x => x.CompanyId,
                         principalTable: "Companies",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Address_People_PersonId",
                         column: x => x.PersonId,
                         principalTable: "People",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
