@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using PayrollExpertApp.Data;
 using PayrollExpertApp.Models;
 using PayrollExpertApp.Services;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace PayrollExpertApp
 {
@@ -36,6 +38,21 @@ namespace PayrollExpertApp
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo("en-US"),
+                    new CultureInfo("zh-CHS")
+                };
+
+                options.DefaultRequestCulture = new RequestCulture(culture: "en-US", uiCulture: "en-US");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
@@ -55,6 +72,21 @@ namespace PayrollExpertApp
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            var supportedCultures = new List<CultureInfo>
+            {
+                new CultureInfo("en-US"),
+                new CultureInfo("zh-CHS")
+            };
+
+            var options = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("en-US"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures,
+            };
+
+            app.UseRequestLocalization(options);
 
             app.UseStaticFiles();
 
