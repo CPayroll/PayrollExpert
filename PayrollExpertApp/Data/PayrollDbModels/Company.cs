@@ -24,19 +24,22 @@ namespace PayrollExpertApp.Data
         [Display(Name = "CBA Business Number")]
         public string CBABusinessNumber { get; set; }
 
-        [Display(Name = "RegistrationDate")]
+        [Display(Name = "Registration Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime RegistrationDate { get; set; }
 
         [Display(Name = "Mailing Address Same As Head Office Address")]
         public bool MailingAddressSameAsHeadOfficeAddress { get; set; }
 
         [StringLength(100)]
+        [Display(Name = "Website URL")]
         public string WebsiteURL { get; set; }
 
         [StringLength(100)]
         public string Email { get; set; }
 
         [StringLength(100)]
+        [Display(Name = "Signing Officer")]
         public string SigningOfficer { get; set; }
 
         [StringLength(100)]

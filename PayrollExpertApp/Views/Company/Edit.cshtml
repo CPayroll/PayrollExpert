@@ -1,73 +1,148 @@
 ﻿@model PayrollExpertApp.Data.Company
 
-@{
-    ViewData["Title"] = "Edit";
+@section scripts {
+    <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datetimepicker1').datepicker();
+        });
+    </script>
 }
 
-<h2>Edit</h2>
+<div class="col-md-10 panel-primary">
+    <div class="content-box-header panel-heading">
+        <div class="panel-title">Company - @Html.DisplayFor(model => model.Name)</div>
+    </div>
+    <div class="panel-body">
+        <div class="tab-content">
+            <div class="col-lg-6" id="tab1">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OperatingName" class="control-label"></label>
+                        <input asp-for="OperatingName" class="form-control" />
+                        <span asp-validation-for="OperatingName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CBABusinessNumber" class="control-label"></label>
+                        <input asp-for="CBABusinessNumber" class="form-control" />
+                        <span asp-validation-for="CBABusinessNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RegistrationDate" class="control-label"></label>
+                        <div class='input-group date' id='datetimepicker1'>
+                            @Html.TextBoxFor(m => m.RegistrationDate, "{0:yyyy-MM-dd}", new { @class = "form-control" })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        <span asp-validation-for="RegistrationDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="WebsiteURL" class="control-label"></label>
+                        <input asp-for="WebsiteURL" class="form-control" />
+                        <span asp-validation-for="WebsiteURL" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SigningOfficer" class="control-label"></label>
+                        <input asp-for="SigningOfficer" class="form-control" />
+                        <span asp-validation-for="SigningOfficer" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Directors" class="control-label"></label>
+                        <input asp-for="Directors" class="form-control" />
+                        <span asp-validation-for="Directors" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MailingAddressSameAsHeadOfficeAddress" class="control-label"></label>
+                        <div class="checkbox">
+                            <label>
+                                <input asp-for="MailingAddressSameAsHeadOfficeAddress" />
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Back" class="btn btn-default" name="postvalue"/>
+                        <input type="submit" value="Save" class="btn btn-primary" name="postvalue"/>
+                        <input type="submit" value="Delete" class="btn btn-warning" name="postvalue"/>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-8">
+                <div class="content-box-large">
+                    <div class="panel-heading">
+                        <div class="panel-title">Addresses</div>
 
-<h4>Company</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OperatingName" class="control-label"></label>
-                <input asp-for="OperatingName" class="form-control" />
-                <span asp-validation-for="OperatingName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CBABusinessNumber" class="control-label"></label>
-                <input asp-for="CBABusinessNumber" class="form-control" />
-                <span asp-validation-for="CBABusinessNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RegistrationDate" class="control-label"></label>
-                <input asp-for="RegistrationDate" class="form-control" />
-                <span asp-validation-for="RegistrationDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="MailingAddressSameAsHeadOfficeAddress" /> @Html.DisplayNameFor(model => model.MailingAddressSameAsHeadOfficeAddress)
-                    </label>
+                        <div class="panel-options">
+                            <a asp-action="Create" data-rel="create"><i class="glyphicon glyphicon-plus"></i></a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>AddressLine1</th>
+                                    <th>AddressLine2</th>
+                                    <th>AddressLine3</th>
+                                    <th>City</th>
+                                    <th>Province</th>
+                                    <th>Country</th>
+                                    <th>PostalCode</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var address in Model.Addresses)
+                                {
+                                    <td>
+                                        @Html.DisplayFor(modelItem => address.Type)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => address.AddressLine1)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => address.AddressLine2)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => address.AddressLine3)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => address.City)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => address.Province)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => address.Country)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => address.PostalCode)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@address.Id">Edit</a> |
+                                        <a asp-action="Delete" asp-route-id="@address.Id">Delete</a>
+                                    </td>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label asp-for="WebsiteURL" class="control-label"></label>
-                <input asp-for="WebsiteURL" class="form-control" />
-                <span asp-validation-for="WebsiteURL" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SigningOfficer" class="control-label"></label>
-                <input asp-for="SigningOfficer" class="form-control" />
-                <span asp-validation-for="SigningOfficer" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Directors" class="control-label"></label>
-                <input asp-for="Directors" class="form-control" />
-                <span asp-validation-for="Directors" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
     </div>
+    
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+        
 

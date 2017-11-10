@@ -20,6 +20,18 @@ namespace PayrollExpertApp.Data.Migrations
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("PayrollExpertApp.Data.AccountingSetup", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AccountingSetup");
+                });
+
             modelBuilder.Entity("PayrollExpertApp.Data.Address", b =>
                 {
                     b.Property<int>("Id")
@@ -35,6 +47,7 @@ namespace PayrollExpertApp.Data.Migrations
                         .HasMaxLength(70);
 
                     b.Property<string>("City")
+                        .IsRequired()
                         .HasMaxLength(70);
 
                     b.Property<int>("CompanyId");
@@ -51,6 +64,7 @@ namespace PayrollExpertApp.Data.Migrations
                         .HasMaxLength(10);
 
                     b.Property<string>("Type")
+                        .IsRequired()
                         .HasMaxLength(10);
 
                     b.HasKey("Id");
@@ -59,7 +73,7 @@ namespace PayrollExpertApp.Data.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("Address");
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("PayrollExpertApp.Data.Company", b =>
@@ -99,12 +113,59 @@ namespace PayrollExpertApp.Data.Migrations
                     b.ToTable("Companies");
                 });
 
+            modelBuilder.Entity("PayrollExpertApp.Data.DropdownListItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Text")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Type")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Value")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DropdownList");
+                });
+
             modelBuilder.Entity("PayrollExpertApp.Data.Person", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("Birthday");
+
+                    b.Property<string>("Comment")
+                        .HasMaxLength(500);
+
                     b.Property<int?>("CompanyId");
+
+                    b.Property<bool>("ContractCopied");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("MiddleName")
+                        .HasMaxLength(50);
+
+                    b.Property<int>("PayrollType");
+
+                    b.Property<int>("RemittanceType");
+
+                    b.Property<string>("SIN")
+                        .IsRequired()
+                        .HasMaxLength(9);
+
+                    b.Property<DateTime>("StartDate");
 
                     b.HasKey("Id");
 

@@ -13,6 +13,8 @@ using PayrollExpertApp.Models;
 using PayrollExpertApp.Services;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 namespace PayrollExpertApp
 {
@@ -67,6 +69,13 @@ namespace PayrollExpertApp
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
                 app.UseDatabaseErrorPage();
+
+                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                {
+                    serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
+                    serviceScope.ServiceProvider.GetService<PayrollDbContext>().Database.Migrate();
+                    serviceScope.ServiceProvider.GetService<PayrollDbContext>().EnsureSeedData();
+                }
             }
             else
             {

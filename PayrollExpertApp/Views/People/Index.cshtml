@@ -1,0 +1,80 @@
+﻿@model IEnumerable<PayrollExpertApp.Data.Person>
+
+@section scripts {
+    <link href="~/lib/DataTables/media/css/dataTables.bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/DataTables/media/js/jquery.js"></script>
+    <script src="~/lib/DataTables/media/js/jquery.dataTables.js"></script>
+    <script src="~/lib/DataTables/media/js/dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tblperson').dataTable();
+        });
+    </script>
+}
+
+<div class="col-md-10">
+    <div class="content-box-header panel-heading">
+        <div class="panel-title">Employees</div>
+        <div class="panel-options">
+            <a asp-action="Create" data-rel="create"><i class="glyphicon glyphicon-plus"></i></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="tblperson">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SIN)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Birthday)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PayrollType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RemittanceType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartDate)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Id)</a>
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SIN)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Birthday)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PayrollType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RemittanceType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

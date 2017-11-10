@@ -19,60 +19,61 @@ namespace PayrollExpertApp.Controllers
         }
 
         // GET: Company
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Companies.ToListAsync());
-        }
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.Companies.ToListAsync());
+        //}
 
-        // GET: Company/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: Company/Details/5
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var company = await _context.Companies
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (company == null)
-            {
-                return NotFound();
-            }
+        //    var company = await _context.Companies
+        //        .SingleOrDefaultAsync(m => m.Id == id);
+        //    if (company == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(company);
-        }
+        //    return View(company);
+        //}
 
-        // GET: Company/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+        //// GET: Company/Create
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
 
-        // POST: Company/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,OperatingName,CBABusinessNumber,RegistrationDate,MailingAddressSameAsHeadOfficeAddress,WebsiteURL,Email,SigningOfficer,Directors")] Company company)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(company);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(company);
-        }
+        //// POST: Company/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("Id,Name,OperatingName,CBABusinessNumber,RegistrationDate,MailingAddressSameAsHeadOfficeAddress,WebsiteURL,Email,SigningOfficer,Directors")] Company company)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(company);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(company);
+        //}
 
         // GET: Company/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
-            var company = await _context.Companies.SingleOrDefaultAsync(m => m.Id == id);
+            //var company = await _context.Companies.SingleOrDefaultAsync(m => m.Id == id);
+            var company = await _context.Companies.FirstOrDefaultAsync();
             if (company == null)
             {
                 return NotFound();
@@ -85,64 +86,69 @@ namespace PayrollExpertApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,OperatingName,CBABusinessNumber,RegistrationDate,MailingAddressSameAsHeadOfficeAddress,WebsiteURL,Email,SigningOfficer,Directors")] Company company)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,OperatingName,CBABusinessNumber,RegistrationDate,MailingAddressSameAsHeadOfficeAddress,WebsiteURL,Email,SigningOfficer,Directors")] Company company, string postvalue)
         {
-            if (id != company.Id)
+            if (postvalue == "Save")
             {
-                return NotFound();
+                if (id != company.Id)
+                {
+                    return NotFound();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        _context.Update(company);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException ex)
+                    {
+                        if (!CompanyExists(company.Id))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            ModelState.AddModelError(ex.Message, "Company saving error.");
+                        }
+                    }
+                }
+                return View(company);
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(company);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CompanyExists(company.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
+            //Default action
             return View(company);
         }
 
-        // GET: Company/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: Company/Delete/5
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var company = await _context.Companies
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (company == null)
-            {
-                return NotFound();
-            }
+        //    var company = await _context.Companies
+        //        .SingleOrDefaultAsync(m => m.Id == id);
+        //    if (company == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(company);
-        }
+        //    return View(company);
+        //}
 
-        // POST: Company/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var company = await _context.Companies.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Companies.Remove(company);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //// POST: Company/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var company = await _context.Companies.SingleOrDefaultAsync(m => m.Id == id);
+        //    _context.Companies.Remove(company);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool CompanyExists(int id)
         {

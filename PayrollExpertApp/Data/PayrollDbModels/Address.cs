@@ -19,6 +19,7 @@ namespace PayrollExpertApp.Data
         [ForeignKey("CompanyId")]
         public Company Company { get; set; }
 
+        [Required]
         [MaxLength(10)]
         public string Type { get; set; }
 
@@ -31,6 +32,7 @@ namespace PayrollExpertApp.Data
         [MaxLength(70)]
         public string AddressLine3 { get; set; }
 
+        [Required]
         [MaxLength(70)]
         public string City { get; set; }
 
