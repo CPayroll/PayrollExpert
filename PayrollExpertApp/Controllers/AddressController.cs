@@ -46,10 +46,14 @@ namespace PayrollExpertApp.Controllers
         }
 
         // GET: Address/Create
-        public IActionResult Create()
+        public IActionResult Create(string CId, string PId)
         {
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Id");
-            ViewData["PersonId"] = new SelectList(_context.People, "Id", "Id");
+            if (!string.IsNullOrEmpty(CId))
+                ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Id", CId);
+            if (!string.IsNullOrEmpty(PId))
+                ViewData["PersonId"] = new SelectList(_context.People, "Id", "Id", PId);
+
+            ViewData["AddressTypes"] = new SelectList(_context.DropdownList.Where(x => x.Type == "AddressType").ToList(), "Value", "Text");
             return View();
         }
 
@@ -64,10 +68,18 @@ namespace PayrollExpertApp.Controllers
             {
                 _context.Add(address);
                 await _context.SaveChangesAsync();
+
+                if (address.CompanyId != null)
+                    return RedirectToAction("Edit", "Company");
+
+                if (address.PersonId != null)
+                    return RedirectToAction("Edit", "People", address.PersonId);
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Id", address.CompanyId);
             ViewData["PersonId"] = new SelectList(_context.People, "Id", "Id", address.PersonId);
+            ViewData["AddressTypes"] = new SelectList(_context.DropdownList.Where(x => x.Type == "AddressType").ToList(), "Value", "Text");
             return View(address);
         }
 
@@ -86,6 +98,7 @@ namespace PayrollExpertApp.Controllers
             }
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Id", address.CompanyId);
             ViewData["PersonId"] = new SelectList(_context.People, "Id", "Id", address.PersonId);
+            ViewData["AddressTypes"] = new SelectList(_context.DropdownList.Where(x => x.Type == "AddressType").ToList(), "Value", "Text");
             return View(address);
         }
 
@@ -119,10 +132,13 @@ namespace PayrollExpertApp.Controllers
                         throw;
                     }
                 }
+                if (address.CompanyId != null)
+                    return RedirectToAction("Edit", "Company");
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "CBABusinessNumber", address.CompanyId);
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Id", address.CompanyId);
             ViewData["PersonId"] = new SelectList(_context.People, "Id", "Id", address.PersonId);
+            ViewData["AddressTypes"] = new SelectList(_context.DropdownList.Where(x => x.Type == "AddressType").ToList(), "Value", "Text");
             return View(address);
         }
 
@@ -142,7 +158,7 @@ namespace PayrollExpertApp.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["AddressTypes"] = new SelectList(_context.DropdownList.Where(x => x.Type == "AddressType").ToList(), "Value", "Text");
             return View(address);
         }
 
@@ -152,8 +168,16 @@ namespace PayrollExpertApp.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var address = await _context.Addresses.SingleOrDefaultAsync(m => m.Id == id);
+            var companyId = address.CompanyId;
+            var personId = address.PersonId;
             _context.Addresses.Remove(address);
             await _context.SaveChangesAsync();
+            
+            if (companyId != null)
+                return RedirectToAction("Edit", "Company");
+            if (personId != null)
+                return RedirectToAction("Edit", "People", personId);
+
             return RedirectToAction(nameof(Index));
         }
 

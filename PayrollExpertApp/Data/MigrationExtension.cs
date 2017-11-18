@@ -24,7 +24,9 @@ namespace PayrollExpertApp.Data
                         new DropdownListItem { Id = Guid.NewGuid(), Type = "PayrollPeriodFrequency", Text = "22 Pay periods a year", Value = "7" },
                         new DropdownListItem { Id = Guid.NewGuid(), Type = "PayrollPeriodFrequency", Text = "Weekly", Value = "8" },
                         new DropdownListItem { Id = Guid.NewGuid(), Type = "PayrollPeriodFrequency", Text = "Bi-weekly (27 pay periods a year)", Value = "9" },
-                        new DropdownListItem { Id = Guid.NewGuid(), Type = "PayrollPeriodFrequency", Text = "Annually", Value = "10" }
+                        new DropdownListItem { Id = Guid.NewGuid(), Type = "PayrollPeriodFrequency", Text = "Annually", Value = "10" },
+                        new DropdownListItem { Id = Guid.NewGuid(), Type = "AddressType", Text = "Mailing", Value = "Mailing" },
+                        new DropdownListItem { Id = Guid.NewGuid(), Type = "AddressType", Text = "Shipping", Value = "Shipping" }
                         );
 
                     context.SaveChanges();

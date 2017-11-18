@@ -10,12 +10,12 @@ namespace PayrollExpertApp.Data
         public int Id { get; set; }
 
         //Foreign key for Person
-        public int PersonId { get; set; }
+        public int? PersonId { get; set; }
         [ForeignKey("PersonId")]
         public Person Person { get; set; }
 
         //Foreign key for Company
-        public int CompanyId { get; set; }
+        public int? CompanyId { get; set; }
         [ForeignKey("CompanyId")]
         public Company Company { get; set; }
 
@@ -23,12 +23,15 @@ namespace PayrollExpertApp.Data
         [MaxLength(10)]
         public string Type { get; set; }
 
+        [Display(Name = "Address Line 1")]
         [MaxLength(70)]
         public string AddressLine1 { get; set; }
 
+        [Display(Name = "Address Line 2")]
         [MaxLength(70)]
         public string AddressLine2 { get; set; }
 
+        [Display(Name = "Address Line 3")]
         [MaxLength(70)]
         public string AddressLine3 { get; set; }
 
@@ -42,6 +45,7 @@ namespace PayrollExpertApp.Data
         [MaxLength(10)]
         public string Country { get; set; }
 
+        [Display(Name = "Postal Code")]
         [MaxLength(15)]
         public string PostalCode { get; set; }
     }

@@ -119,9 +119,9 @@ namespace PayrollExpertApp.Data.Migrations
                     AddressLine2 = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: true),
                     AddressLine3 = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: true),
                     City = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
-                    CompanyId = table.Column<int>(type: "int", nullable: false),
+                    CompanyId = table.Column<int>(type: "int", nullable: true),
                     Country = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
-                    PersonId = table.Column<int>(type: "int", nullable: false),
+                    PersonId = table.Column<int>(type: "int", nullable: true),
                     PostalCode = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
                     Province = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     Type = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false)
@@ -134,13 +134,13 @@ namespace PayrollExpertApp.Data.Migrations
                         column: x => x.CompanyId,
                         principalTable: "Companies",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Addresses_People_PersonId",
                         column: x => x.PersonId,
                         principalTable: "People",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

@@ -9,14 +9,28 @@ Step 2.
 Run command to remove migration file
 dotnet ef migrations remove -c PayrollDbContext
 
-Step 3.
+If there are errors in this step, you can also manually delete context schemas in migration folder. 
+
+Step 3
+Comment out lines below in Startup.cs
+using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+{
+    serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
+    serviceScope.ServiceProvider.GetService<PayrollDbContext>().Database.Migrate();
+    serviceScope.ServiceProvider.GetService<PayrollDbContext>().EnsureSeedData();
+}
+
+Step 4.
 Run command to add new migration file
 dotnet ef migrations add CreatePayrollSchema -c PayrollDbContext -o Data\Migrations
 
-Step 4. 
+Step 5. 
 Debug the app, then apply ApplicationUserContext migration. 
 Run command to apply PayrollDbContext 
 dotnet ef database update -c ApplicationDbContext
 dotnet ef database update -c PayrollDbContext
+
+Step 6
+Uncomment the lines in step 3.
 
 Remember to update the corresponding controllers and views. 

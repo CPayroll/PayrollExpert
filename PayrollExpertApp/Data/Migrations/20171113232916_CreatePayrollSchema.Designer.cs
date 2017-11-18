@@ -11,7 +11,7 @@ using System;
 namespace PayrollExpertApp.Data.Migrations
 {
     [DbContext(typeof(PayrollDbContext))]
-    [Migration("20171028210744_CreatePayrollSchema")]
+    [Migration("20171113232916_CreatePayrollSchema")]
     partial class CreatePayrollSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,12 +51,12 @@ namespace PayrollExpertApp.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(70);
 
-                    b.Property<int>("CompanyId");
+                    b.Property<int?>("CompanyId");
 
                     b.Property<string>("Country")
                         .HasMaxLength(10);
 
-                    b.Property<int>("PersonId");
+                    b.Property<int?>("PersonId");
 
                     b.Property<string>("PostalCode")
                         .HasMaxLength(15);
@@ -203,13 +203,11 @@ namespace PayrollExpertApp.Data.Migrations
                 {
                     b.HasOne("PayrollExpertApp.Data.Company", "Company")
                         .WithMany("Addresses")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CompanyId");
 
                     b.HasOne("PayrollExpertApp.Data.Person", "Person")
                         .WithMany("Addresses")
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PersonId");
                 });
 
             modelBuilder.Entity("PayrollExpertApp.Data.Person", b =>

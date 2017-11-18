@@ -73,7 +73,7 @@ namespace PayrollExpertApp.Controllers
             //}
 
             //var company = await _context.Companies.SingleOrDefaultAsync(m => m.Id == id);
-            var company = await _context.Companies.FirstOrDefaultAsync();
+            var company = await _context.Companies.Include(c=>c.Addresses).FirstOrDefaultAsync();
             if (company == null)
             {
                 return NotFound();
@@ -114,6 +114,7 @@ namespace PayrollExpertApp.Controllers
                         }
                     }
                 }
+                company.Addresses = _context.Addresses.Where(x => x.CompanyId == company.Id).ToList();
                 return View(company);
             }
 
