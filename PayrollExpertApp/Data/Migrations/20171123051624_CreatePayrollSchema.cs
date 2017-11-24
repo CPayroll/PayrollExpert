@@ -64,7 +64,7 @@ namespace PayrollExpertApp.Data.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    CompanyId = table.Column<int>(type: "int", nullable: true),
+                    CompanyId = table.Column<int>(type: "int", nullable: false),
                     ContractCopied = table.Column<bool>(type: "bit", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -79,30 +79,6 @@ namespace PayrollExpertApp.Data.Migrations
                     table.PrimaryKey("PK_People", x => x.Id);
                     table.ForeignKey(
                         name: "FK_People_Companies_CompanyId",
-                        column: x => x.CompanyId,
-                        principalTable: "Companies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ShareHolder",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CommonSharePercentage = table.Column<double>(type: "float", nullable: false),
-                    CompanyId = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OtherPercentage = table.Column<double>(type: "float", nullable: false),
-                    PreferredSharePercentage = table.Column<double>(type: "float", nullable: false),
-                    SINNumber = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ShareHolder", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ShareHolder_Companies_CompanyId",
                         column: x => x.CompanyId,
                         principalTable: "Companies",
                         principalColumn: "Id",
@@ -143,6 +119,28 @@ namespace PayrollExpertApp.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ShareHolders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CommonSharePercentage = table.Column<double>(type: "float", nullable: false),
+                    OtherPercentage = table.Column<double>(type: "float", nullable: false),
+                    PersonId = table.Column<int>(type: "int", nullable: false),
+                    PreferredSharePercentage = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShareHolders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ShareHolders_People_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "People",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_CompanyId",
                 table: "Addresses",
@@ -159,9 +157,10 @@ namespace PayrollExpertApp.Data.Migrations
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShareHolder_CompanyId",
-                table: "ShareHolder",
-                column: "CompanyId");
+                name: "IX_ShareHolders_PersonId",
+                table: "ShareHolders",
+                column: "PersonId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -176,7 +175,7 @@ namespace PayrollExpertApp.Data.Migrations
                 name: "DropdownList");
 
             migrationBuilder.DropTable(
-                name: "ShareHolder");
+                name: "ShareHolders");
 
             migrationBuilder.DropTable(
                 name: "People");

@@ -45,6 +45,7 @@ namespace PayrollExpertApp.Controllers
         // GET: People/Create
         public IActionResult Create()
         {
+            ViewBag.CompanyId = new SelectList(_context.Companies, "Id", "Name", _context.Companies.FirstOrDefault().Id);
             return View();
         }
 
@@ -53,7 +54,7 @@ namespace PayrollExpertApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,MiddleName,LastName,SIN,Birthday,PayrollType,RemittanceType,ContractCopied,Comment,StartDate")] Person person)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,MiddleName,LastName,CompanyId,SIN,Birthday,PayrollType,RemittanceType,ContractCopied,Comment,StartDate")] Person person)
         {
             if (ModelState.IsValid)
             {
@@ -79,6 +80,7 @@ namespace PayrollExpertApp.Controllers
             }
 
             ViewBag.PayrollTypes = GetPayrollTypes();
+            ViewBag.CompanyId = new SelectList(_context.Companies, "Id", "Name", person.CompanyId);
             return View(person);
         }
 
@@ -96,7 +98,7 @@ namespace PayrollExpertApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,MiddleName,LastName,SIN,Birthday,PayrollType,RemittanceType,ContractCopied,Comment,StartDate")] Person person)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,MiddleName,LastName,CompanyId,SIN,Birthday,PayrollType,RemittanceType,ContractCopied,Comment,StartDate")] Person person)
         {
             if (id != person.Id)
             {

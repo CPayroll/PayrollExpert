@@ -45,8 +45,7 @@ namespace PayrollExpertApp.Data
         [StringLength(100)]
         public string Directors { get; set; }
 
-        public ICollection<Person> ContactPeople { get; set; } = new List<Person>();
+        public ICollection<Person> People { get; set; } = new List<Person>();
         public ICollection<Address> Addresses { get; set; } = new List<Address>();
-        public ICollection<ShareHolder> ShareHolders { get; set; } = new List<ShareHolder>();
     }
 }

@@ -8,15 +8,21 @@ namespace PayrollExpertApp.Data
         [Key]
         public int Id { get; set; }
 
-        //Foreign key for Compay
-        public int CompanyId { get; set; }
-        [ForeignKey("CompanyId")]
-        public Company Company { get; set; }
+        //Foreign key for Company
+        public int PersonId { get; set; }
+        [ForeignKey("PersonId")]
+        public virtual Person Person { get; set; }
 
-        public string Name { get; set; }
-        public string SINNumber { get; set; }
+        [Required]
+        [Display(Name = "Common Share Percentage")]
         public double CommonSharePercentage { get; set; }
+
+        [Required]
+        [Display(Name = "Preferred Share Percentage")]
         public double PreferredSharePercentage { get; set; }
+
+        [Required]
+        [Display(Name = "Other Percentage")]
         public double OtherPercentage { get; set; }
     }
 }

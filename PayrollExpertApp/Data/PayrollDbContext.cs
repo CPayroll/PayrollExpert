@@ -18,11 +18,12 @@ namespace PayrollExpertApp.Data
         public DbSet<Address> Addresses { get; set; }
         public DbSet<AccountingSetup> AccountingSetup { get; set; }
         public DbSet<DropdownListItem> DropdownList { get; set; }
+        public DbSet<ShareHolder> ShareHolders { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=.\sqlexpress;Database=PayrollExpert;Trusted_Connection=True;MultipleActiveResultSets=true");
         }
-        
+
     }
 }

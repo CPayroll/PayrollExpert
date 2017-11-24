@@ -9,6 +9,7 @@ namespace PayrollExpertApp.Data
         [Key]
         public Guid Id { get; set; }
 
+        [Column("Type", Order = 1)]
         [StringLength(50)]
         public string Type { get; set; }
 

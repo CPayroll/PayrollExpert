@@ -90,13 +90,13 @@
                             <thead>
                                 <tr>
                                     <th>Type</th>
-                                    <th>AddressLine1</th>
-                                    <th>AddressLine2</th>
-                                    <th>AddressLine3</th>
+                                    <th>Address Line 1</th>
+                                    <th>Address Line 2</th>
+                                    <th>Address Line 3</th>
                                     <th>City</th>
                                     <th>Province</th>
                                     <th>Country</th>
-                                    <th>PostalCode</th>
+                                    <th>Postal Code</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -131,6 +131,87 @@
                                         <td>
                                             <a asp-controller="Address" asp-action="Edit" asp-route-id="@address.Id">Edit</a> |
                                             <a asp-controller="Address" asp-action="Delete" asp-route-id="@address.Id">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="content-box-large">
+                    <div class="panel-heading">
+                        <div class="panel-title">Employees</div>
+
+                        <div class="panel-options">
+                            <a asp-controller="People" asp-action="Create" data-rel="create" asp-route-CId=@Model.Id><i class="glyphicon glyphicon-plus"></i></a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>SIN Number</th>
+                                    <th>Start Date</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var person in Model.People)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => person.FirstName) @Html.DisplayFor(modelItem => person.LastName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => person.SIN)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => person.StartDate)
+                                        </td>
+                                        <td>
+                                            <a asp-controller="People" asp-action="Edit" asp-route-id="@person.Id">Edit</a> |
+                                            <a asp-controller="People" asp-action="Delete" asp-route-id="@person.Id">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="content-box-large">
+                    <div class="panel-heading">
+                        <div class="panel-title">Share Holders</div>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Common Share Percentage</th>
+                                    <th>Preferred Share Percentage</th>
+                                    <th>Other Percentage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (PayrollExpertApp.Data.ShareHolder holder in ViewBag.ShareHolders)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => holder.Person.FirstName) @Html.DisplayFor(modelItem => holder.Person.LastName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => holder.CommonSharePercentage)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => holder.PreferredSharePercentage)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => holder.OtherPercentage)
                                         </td>
                                     </tr>
                                 }

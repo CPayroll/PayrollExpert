@@ -122,6 +122,7 @@ namespace PayrollExpertApp.Data.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("Type")
+                        .HasColumnName("Type")
                         .HasMaxLength(50);
 
                     b.Property<string>("Value")
@@ -142,7 +143,7 @@ namespace PayrollExpertApp.Data.Migrations
                     b.Property<string>("Comment")
                         .HasMaxLength(500);
 
-                    b.Property<int?>("CompanyId");
+                    b.Property<int>("CompanyId");
 
                     b.Property<bool>("ContractCopied");
 
@@ -181,21 +182,18 @@ namespace PayrollExpertApp.Data.Migrations
 
                     b.Property<double>("CommonSharePercentage");
 
-                    b.Property<int>("CompanyId");
-
-                    b.Property<string>("Name");
-
                     b.Property<double>("OtherPercentage");
+
+                    b.Property<int>("PersonId");
 
                     b.Property<double>("PreferredSharePercentage");
 
-                    b.Property<string>("SINNumber");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyId");
+                    b.HasIndex("PersonId")
+                        .IsUnique();
 
-                    b.ToTable("ShareHolder");
+                    b.ToTable("ShareHolders");
                 });
 
             modelBuilder.Entity("PayrollExpertApp.Data.Address", b =>
@@ -211,16 +209,17 @@ namespace PayrollExpertApp.Data.Migrations
 
             modelBuilder.Entity("PayrollExpertApp.Data.Person", b =>
                 {
-                    b.HasOne("PayrollExpertApp.Data.Company")
-                        .WithMany("ContactPeople")
-                        .HasForeignKey("CompanyId");
+                    b.HasOne("PayrollExpertApp.Data.Company", "Company")
+                        .WithMany("People")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PayrollExpertApp.Data.ShareHolder", b =>
                 {
-                    b.HasOne("PayrollExpertApp.Data.Company", "Company")
-                        .WithMany("ShareHolders")
-                        .HasForeignKey("CompanyId")
+                    b.HasOne("PayrollExpertApp.Data.Person", "Person")
+                        .WithOne("ShareHolderInfo")
+                        .HasForeignKey("PayrollExpertApp.Data.ShareHolder", "PersonId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

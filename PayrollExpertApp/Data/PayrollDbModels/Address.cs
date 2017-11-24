@@ -12,12 +12,12 @@ namespace PayrollExpertApp.Data
         //Foreign key for Person
         public int? PersonId { get; set; }
         [ForeignKey("PersonId")]
-        public Person Person { get; set; }
+        public virtual Person Person { get; set; }
 
         //Foreign key for Company
         public int? CompanyId { get; set; }
         [ForeignKey("CompanyId")]
-        public Company Company { get; set; }
+        public virtual Company Company { get; set; }
 
         [Required]
         [MaxLength(10)]

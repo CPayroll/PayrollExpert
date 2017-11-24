@@ -73,11 +73,13 @@ namespace PayrollExpertApp.Controllers
             //}
 
             //var company = await _context.Companies.SingleOrDefaultAsync(m => m.Id == id);
-            var company = await _context.Companies.Include(c=>c.Addresses).FirstOrDefaultAsync();
+            var company = await _context.Companies.Include(c=>c.Addresses).Include(e=>e.People).FirstOrDefaultAsync();
             if (company == null)
             {
                 return NotFound();
             }
+            //Directly load from shareholder set for only 1 company.
+            ViewBag.ShareHolders = _context.ShareHolders.Include(x=>x.Person).ToList();
             return View(company);
         }
 
