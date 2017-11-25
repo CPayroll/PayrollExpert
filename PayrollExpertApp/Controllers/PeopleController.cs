@@ -46,6 +46,8 @@ namespace PayrollExpertApp.Controllers
         public IActionResult Create()
         {
             ViewBag.CompanyId = new SelectList(_context.Companies, "Id", "Name", _context.Companies.FirstOrDefault().Id);
+            ViewBag.PayrollTypes = new SelectList(_context.DropdownList.Where(x => x.Type == "PayrollPeriodFrequency").ToList(), "Value", "Text");
+            ViewBag.PayrollTypes = new SelectList(_context.DropdownList.Where(x => x.Type == "RemittanceType").ToList(), "Value", "Text");
             return View();
         }
 
@@ -62,6 +64,9 @@ namespace PayrollExpertApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.CompanyId = new SelectList(_context.Companies, "Id", "Name", _context.Companies.FirstOrDefault().Id);
+            ViewBag.PayrollTypes = new SelectList(_context.DropdownList.Where(x => x.Type == "PayrollPeriodFrequency").ToList(), "Value", "Text");
+            ViewBag.PayrollTypes = new SelectList(_context.DropdownList.Where(x => x.Type == "RemittanceType").ToList(), "Value", "Text");
             return View(person);
         }
 

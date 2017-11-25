@@ -117,6 +117,7 @@ namespace PayrollExpertApp.Controllers
                     }
                 }
                 company.Addresses = _context.Addresses.Where(x => x.CompanyId == company.Id).ToList();
+                company.People = _context.People.Where(x => x.CompanyId == company.Id).ToList();
                 return View(company);
             }
 
