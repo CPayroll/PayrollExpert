@@ -46,8 +46,8 @@ namespace PayrollExpertApp.Controllers
         public IActionResult Create()
         {
             ViewBag.CompanyId = new SelectList(_context.Companies, "Id", "Name", _context.Companies.FirstOrDefault().Id);
-            ViewBag.PayrollTypes = new SelectList(_context.DropdownList.Where(x => x.Type == "PayrollPeriodFrequency").ToList(), "Value", "Text");
-            ViewBag.PayrollTypes = new SelectList(_context.DropdownList.Where(x => x.Type == "RemittanceType").ToList(), "Value", "Text");
+            ViewBag.PayrollTypes = new SelectList(Utilities.GetDropDownSource(_context, "PayrollPeriodFrequency", true), "Value", "Text");
+            ViewBag.RemittanceTypes = new SelectList(Utilities.GetDropDownSource(_context, "RemittancePeriodFrequency", true), "Value", "Text");
             return View();
         }
 
@@ -62,11 +62,11 @@ namespace PayrollExpertApp.Controllers
             {
                 _context.Add(person);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Edit), new {id = person.Id});
             }
             ViewBag.CompanyId = new SelectList(_context.Companies, "Id", "Name", _context.Companies.FirstOrDefault().Id);
-            ViewBag.PayrollTypes = new SelectList(_context.DropdownList.Where(x => x.Type == "PayrollPeriodFrequency").ToList(), "Value", "Text");
-            ViewBag.PayrollTypes = new SelectList(_context.DropdownList.Where(x => x.Type == "RemittanceType").ToList(), "Value", "Text");
+            ViewBag.PayrollTypes = new SelectList(Utilities.GetDropDownSource(_context, "PayrollPeriodFrequency", true), "Value", "Text", person.PayrollType);
+            ViewBag.RemittanceTypes = new SelectList(Utilities.GetDropDownSource(_context, "RemittancePeriodFrequency", true), "Value", "Text", person.RemittanceType);
             return View(person);
         }
 
@@ -84,18 +84,10 @@ namespace PayrollExpertApp.Controllers
                 return NotFound();
             }
 
-            ViewBag.PayrollTypes = GetPayrollTypes();
             ViewBag.CompanyId = new SelectList(_context.Companies, "Id", "Name", person.CompanyId);
+            ViewBag.PayrollTypes = new SelectList(Utilities.GetDropDownSource(_context, "PayrollPeriodFrequency",true), "Value", "Text", person.PayrollType);
+            ViewBag.RemittanceTypes = new SelectList(Utilities.GetDropDownSource(_context, "RemittancePeriodFrequency", true), "Value", "Text", person.RemittanceType);
             return View(person);
-        }
-
-        private dynamic GetPayrollTypes()
-        {
-            List<DropdownListItem> list = new List<DropdownListItem>();
-            list = _context.DropdownList.Where(x => x.Type == "PayrollPeriodFrequency").ToList();
-            list.Insert(0, new DropdownListItem { Id = Guid.NewGuid(), Type = "PayrollPeriodFrequency", Text = "Please select", Value = "" });
-
-            return list;
         }
 
         // POST: People/Edit/5
@@ -130,6 +122,9 @@ namespace PayrollExpertApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.CompanyId = new SelectList(_context.Companies, "Id", "Name", person.CompanyId);
+            ViewBag.PayrollTypes = new SelectList(Utilities.GetDropDownSource(_context, "PayrollPeriodFrequency", true), "Value", "Text", person.PayrollType);
+            ViewBag.RemittanceTypes = new SelectList(Utilities.GetDropDownSource(_context, "RemittancePeriodFrequency", true), "Value", "Text", person.RemittanceType);
             return View(person);
         }
 
